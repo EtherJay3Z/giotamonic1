@@ -1,0 +1,20 @@
+hash: 8853c4a12a1e8c77c5f816c5253b44b19ff9d2c7c7f989c9c22cb22ddb5d5556
+updated: 2018-06-26T19:20:12.4838033+02:00
+imports:
+- name: github.com/codegangsta/cli
+  version: cfb38830724cc34fedffe9a2a29fb54fa9169cd1
+- name: github.com/iotaledger/giota
+  version: 686fae6314ccb2c6f580adb0d99e0623d7d21e5e
+  subpackages:
+  - cl
+- name: github.com/tildeleb/hashland
+  version: 07375b562deaa8d6891f9618a04e94a0b98e2ee7
+  subpackages:
+  - keccakpg
+- name: github.com/tyler-smith/go-bip39
+  version: 52158e4697b87de16ed390e1bdaf813e581008fa
+- name: golang.org/x/crypto
+  version: 027cca12c2d63e3d62b670d901e8a2c95854feec
+  subpackages:
+  - pbkdf2
+testImports: []

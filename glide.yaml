@@ -1,0 +1,5 @@
+package: github.com/mcpride/giotamonic
+import:
+- package: github.com/codegangsta/cli
+  version: ^1.20.0
+- package: github.com/iotaledger/giota
