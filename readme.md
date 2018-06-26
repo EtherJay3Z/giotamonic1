@@ -2,26 +2,32 @@
 
 This is a command line tool to help user generate IOTA seed from Bitcoin BIP39 mnenomic
 
+## Install
+
+``` shell
+$ go install github.com/mcpride/giotamonic
+```
+
 ## Build
 
-GIOTAmonic has a dependency to `glide` which manages related vendor packages - so it must be installed.
+GIOTAmonic has a dependency to the tool `glide` which manages related vendor packages - so it must be installed.
 
 To install the vendor packages run:
 
-```
-> glide install
+``` shell
+$ glide install
 ```
 
 then you can build it with
 
-```
-> go build
+``` shell
+$ go build
 ```
 
 or test the sub package `iota_mnemonic` with following command:
 
-```
-> go test ./iota_mnemonic
+``` shell
+$ go test ./iota_mnemonic
 ```
 
 
@@ -30,8 +36,8 @@ or test the sub package `iota_mnemonic` with following command:
 
 With `giotamonic help` you will get a help how to use giotamonic:
 
-```
-> giotamonic help
+``` shell
+$ giotamonic help
 
 NAME:
    giotamonic - Generate, restore IOTA seed from Bitcoin BIP39 mnemonic word list.
@@ -51,8 +57,8 @@ COMMANDS:
 
 To output a new seed and the corresponding BIP39 mnemonic word list, execute giotamonic mit the `new` command:
 
-```
-> giotamonic help new
+``` shell
+$ giotamonic help new
 
 NAME:
    giotamonic new - Create new mnemonic and iota seed
@@ -71,24 +77,24 @@ OPTIONS:
 #### Examples
 
 * 24 word mnemonic + seed:
-```
-> giotamonic new
+``` shell
+$ giotamonic new
 
 Mnemonic: abuse episode network recall cement connect left sport nose claw reveal certain struggle north strike surprise tennis luxury begin pole trap quote labor collect
 Seed: HYRQZWPCRFIQ9BZOJBJGMNBRKAHWRSZKYZWS9NTTGPCWLRFUFUGHORONUHWXGNUQZUQGNWPPKUUEEXJQY
 ```
 
 * 12 word mnemonic + seed:
-```
-> giotamonic new --bitsize 128
+``` shell
+$ giotamonic new --bitsize 128
 
 Mnemonic: ugly scorpion hour trial blue forum glass life click feature mean sentence
 Seed: IUSOCINQJUYBBGWDKBIKWU9YYCFHJFRALIPPHGIQHMYRWUNVZLWFEAHZDKFRFGZAAEWMKEI9YTRRGCYZA
 ```
 
 * Word mnemonic + seed (passphrase encrypted):
-```
-> giotamonic new --passphrase "Mei Pa$$frA$e"
+``` shell
+$ giotamonic new --passphrase "Mei Pa$$frA$e"
 
 Mnemonic: rifle rhythm zebra practice pet fish general accuse virtual traffic history blanket visit gaze leave city alpha injury myself pizza upgrade trade detect awake
 Seed: KIVQGMYMDXXOXMDKIKOXHDYMWFTRHXHWZPEPHHIWONSZLLCQMVTVHLICMUUEIERAQFZB9ZPKKGHFBWCP9
@@ -96,8 +102,8 @@ Seed: KIVQGMYMDXXOXMDKIKOXHDYMWFTRHXHWZPEPHHIWONSZLLCQMVTVHLICMUUEIERAQFZB9ZPKKG
 
 ### Generate seed from existing mnemonic
 
-```
-> giotamonic help to-seed
+``` shell
+$ giotamonic help to-seed
 
 NAME:
    giotamonic to-seed - Convert mnemonic to iota seed
@@ -114,23 +120,22 @@ OPTIONS:
 
 #### Examples
 
-```
-> giotamonic to-seed "ugly scorpion hour trial blue forum glass life click feature mean sentence"
+``` shell
+$ giotamonic to-seed "ugly scorpion hour trial blue forum glass life click feature mean sentence"
 
 IUSOCINQJUYBBGWDKBIKWU9YYCFHJFRALIPPHGIQHMYRWUNVZLWFEAHZDKFRFGZAAEWMKEI9YTRRGCYZA
 ```
 
 * with passphrase:
-```
-> giotamonic to-seed "ugly scorpion hour trial blue forum glass life click feature mean sentence" --passphrase "Mei Pa$$frA$e"
+``` shell
+$ giotamonic to-seed "ugly scorpion hour trial blue forum glass life click feature mean sentence" --passphrase "Mei Pa$$frA$e"
 
 XLQHKPKWBASMVJVWRDPDIKFOGTEFQGSCUXCKHSQXTTSEAXIL9JJGEWQHHGXFWKPBUUBNJTQEGEKPDSOKX
 ```
 
 * You can also use pipes:
-
-```
-> giotamonic to-seed --passphrase "Mei Pa$$frA$e" < mnemonic.txt > seed.txt
+``` shell
+$ giotamonic to-seed --passphrase "Mei Pa$$frA$e" < mnemonic.txt > seed.txt
 ```
 
 ### How it works
