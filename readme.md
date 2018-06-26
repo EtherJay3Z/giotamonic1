@@ -135,4 +135,4 @@ XLQHKPKWBASMVJVWRDPDIKFOGTEFQGSCUXCKHSQXTTSEAXIL9JJGEWQHHGXFWKPBUUBNJTQEGEKPDSOK
 
 ### How it works
 
-The mnemonic and passphrase will be used to generate a 64 byte seed according to the (BIP-0039)[https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki] standard. IOTA seeds consist of 81 trytes. Deterministic conversions can done between 81 trytes and 48 bytes which IOTAs `Kerl` does. For the extraction of 4 48 byte slices from a 64 byte block I implemented the simple algorithm from (Bart Slinger)[https://github.com/iota-trezor/trezor-mcu/blob/25292640b560a644ebf88d0dae848e8928e68127/firmware/iota.c#L70].
+The mnemonic and passphrase will be used to generate a 64 byte seed according to the [BIP-0039](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) standard. IOTA seeds consist of 81 trytes. Deterministic conversions can done between 81 trytes and 48 bytes which IOTAs `Kerl` does. For the extraction of 4 48 byte slices from a 64 byte block I implemented the [simple algorithm from Bart Slinger](https://github.com/iota-trezor/trezor-mcu/blob/25292640b560a644ebf88d0dae848e8928e68127/firmware/iota.c#L70).
