@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/codegangsta/cli"
 	"github.com/mcpride/giotamonic/iota_mnemonic"
@@ -46,6 +47,7 @@ func toSeedAction(c *cli.Context) {
 	if len(c.Args()) != 1 {
 		reader := bufio.NewReader(os.Stdin)
 		mnemonic, _ = reader.ReadString('\n')
+		mnemonic = strings.TrimSpace(mnemonic)
 	} else {
 		mnemonic = c.Args()[0]
 	}
