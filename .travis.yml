@@ -1,0 +1,21 @@
+language: go
+sudo: false
+go:
+- 1.9.x
+deploy:
+  provider: releases
+  file:
+  - bin/giotamonic-${TRAVIS_TAG}-linux-amd64
+  - bin/giotamonic-${TRAVIS_TAG}-darwin-amd64
+  - bin/giotamonic-${TRAVIS_TAG}-windows-amd64
+  skip_cleanup: true
+  on:
+    tags: true
+    go: 1.9
+install:
+- go get -d -t -v ./...
+- go get github.com/Masterminds/glide
+before_script:
+- ./build
+script:
+- ./test
