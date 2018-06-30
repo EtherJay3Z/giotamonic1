@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/mcpride/giotamonic.svg?branch=master)](https://travis-ci.org/mcpride/giotamonic) [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat)](https://raw.githubusercontent.com/mcpride/giotamonic/master/LICENSE)
+
+
 # GIOTAmonic
 
 This is a command line tool to help user generate IOTA seed from Bitcoin BIP39 mnenomic
@@ -140,4 +143,20 @@ $ giotamonic to-seed --passphrase "Mei Pa$$frA$e" < mnemonic.txt > seed.txt
 
 ### How it works
 
-The mnemonic and passphrase will be used to generate a 64 byte seed according to the [BIP-0039](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) standard. IOTA seeds consist of 81 trytes. Deterministic conversions can done between 81 trytes and 48 bytes which IOTAs `Kerl` does. For the extraction of 4 48 byte slices from a 64 byte block I implemented the [simple algorithm from Bart Slinger](https://github.com/iota-trezor/trezor-mcu/blob/25292640b560a644ebf88d0dae848e8928e68127/firmware/iota.c#L70).
+The mnemonic and passphrase will be used to generate a 64 byte seed according to the [BIP-0039](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) standard. IOTA seeds consist of 81 trytes. Deterministic conversions can done between 81 trytes and 48 bytes. For the extraction of 4 x 48 byte slices from a 64 byte block I implemented the [simple algorithm from Bart Slinger](https://github.com/iota-trezor/trezor-mcu/blob/25292640b560a644ebf88d0dae848e8928e68127/firmware/iota.c#L70). These slices will be absorbed by IOTA Kerl and then squeezed out to an IOTA hash seed.
+
+#### More detailed
+
+The following steps sketches the algrorithm in prosa:
+
+* Generate the 64 bytes seed from mnemonic words and password according to BIP-39
+* Slide the 64 bytes of mnemonic seed into 4 x 16 bytes blocks `[1|2|3|4]`.
+* Get the first 48 bytes (first 3 blocks): `[1|2|3]` and absorb them with IOTA's `Kerl`.
+* Get the last 48 bytes (last 3 blocks): `[2|3|4]` and absorb them with IOTA's `Kerl`.
+* Get the last 32 bytes (last 2 blocks) + first 16 bytes (1st block): `[3|4|1]` and absorb them with IOTA's `Kerl`.
+* Get tshe last 16 bytes (last block) + first 32 bytes (first 2 blocks): `[4|1|2]` and absorb them with IOTA's `Kerl`.
+* Call `Squeeze` from `Kerl` to get the IOTA seed.
+
+### License
+
+Giotamonic and it's sub packages are under the MIT license. See the [LICENSE](LICENSE) file for details.
