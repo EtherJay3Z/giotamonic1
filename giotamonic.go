@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/codegangsta/cli"
+	"github.com/urfave/cli"
 	"github.com/mcpride/giotamonic/iota_mnemonic"
 	"github.com/tyler-smith/go-bip39"
 )
